@@ -466,6 +466,10 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    text-align: center;
   }
   .date .dismis {
     margin: 10px;
