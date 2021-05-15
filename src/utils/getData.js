@@ -1,19 +1,18 @@
 const getData = async (url) => {
+  console.log(url);
   try {
     const data = await fetch(url);
     const result = await data.json();
-    if (Array.isArray(result)) {
-      if (result[0].hasOwnProperty("Confirmed")) {
-        result.forEach((country) => {
-          country.NewConfirmed = country.Confirmed;
-          country.NewDeaths = country.Deaths;
-          country.NewRecovered = country.Recovered;
-        });
-      }
-      return result;
-    } else {
-      return { error: true, message: "Error while fetching data" };
+    if (result.length === 0)
+      return { error: true, message: "No Data were found " };
+    if (result[0].hasOwnProperty("Confirmed")) {
+      result.forEach((country) => {
+        country.NewConfirmed = country.Confirmed;
+        country.NewDeaths = country.Deaths;
+        country.NewRecovered = country.Recovered;
+      });
     }
+    return result;
   } catch (error) {
     const errorMessage = {
       error: true,

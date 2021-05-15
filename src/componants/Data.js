@@ -32,7 +32,7 @@ const Data = () => {
       setLoading(true);
       const data = await fetchData(url);
       if ("error" in data) {
-        setErrors({ message: '"Something went wrong"', error: data.message });
+        setErrors({ message: "Something went wrong", error: data.message });
         setLoading(false);
         return;
       }

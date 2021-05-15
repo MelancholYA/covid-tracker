@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { EDIT } from "../Redux/Action";
-
+import { today } from "../utils/dateFormater";
 // the date form
 const Date = ({ disable }) => {
   const [from, setFrom] = useState("");
@@ -11,6 +11,8 @@ const Date = ({ disable }) => {
   const gotDate = async (e) => {
     e.preventDefault();
     if (!from || !to) return alert("Please Pick a date first");
+    if (from >= today() || to >= today)
+      return alert("Please chose a sutible date");
     let url;
     if (countryState) {
       url = `https://api.covid19api.com/country/${countryState}?from=${from}T00:00:00Z&to=${to}T00:00:00Z`;
